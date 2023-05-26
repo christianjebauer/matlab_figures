@@ -1,2 +1,2 @@
-# matlab_figures
-MATLAB figure handling
+# MATLAB figure functions
+MATLAB figure functions
