@@ -5,6 +5,9 @@ function exportTile(tile, axArray, lgdArray, figure_high, figuresPath, fileName)
         ax.XGrid = 'off';
         ax.YGrid = 'on';
     end
+    if ~contains(fileName, '.pdf')
+        fileName = strcat(fileName, '.pdf');
+    end
     exportgraphics(gcf, strcat(figuresPath, fileName), 'BackgroundColor', 'none', ...
         'ContentType', 'vector');
 end
