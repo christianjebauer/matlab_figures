@@ -6,5 +6,5 @@ function setFont
     ax.TitleFontSizeMultiplier = 1;
     ax.FontSizeMode = 'manual';
     ax.FontSize = 9;
-    ax.FontName = 'Times New Roman';
+    ax.FontName = 'CMU Serif'; % Use listfonts to see all available fonts
 end

@@ -9,12 +9,12 @@ function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comm
         ax.LabelFontSizeMultiplier = 1;
         ax.TitleFontSizeMultiplier = 1;
         ax.FontSizeMode = 'manual';
-        ax.FontSize = 10;
-        ax.FontName = 'Times New Roman';
+        ax.FontSize = 9;
+        ax.FontName = 'CMU Serif'; % Use listfonts to see all available fonts
     end
     for lgd = lgdArray
-        lgd.FontSize = 10;
-        lgd.FontName = 'Times New Roman';
+        lgd.FontSize = 9;
+        lgd.FontName = 'CMU Serif'; % Use listfonts to see all available fonts
     end
     set(figure1,'units','centimeters','position',[0 0 14.7 figure_high]);
     if (comma==true)

@@ -7,7 +7,7 @@ function exportTile3D(tile, axArray, figure_high, figuresPath, fileName)
         ax.TitleFontSizeMultiplier = 1;
         ax.FontSizeMode = 'manual';
         ax.FontSize = 9;
-        ax.FontName = 'Times New Roman';
+        ax.FontName = 'CMU Serif'; % Use listfonts to see all available fonts
     end
     set(gcf, 'units', 'centimeters', 'position', [0 0 14.8 figure_high]);
     for ax = axArray

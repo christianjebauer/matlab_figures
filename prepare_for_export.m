@@ -6,8 +6,8 @@ grid on;
 ax.LabelFontSizeMultiplier = 1;
 ax.TitleFontSizeMultiplier = 1;
 ax.FontSizeMode = 'manual';
-ax.FontSize = 10;
-ax.FontName = 'Times New Roman';
+ax.FontSize = 9;
+ax.FontName = 'CMU Serif';
 set(figure1,'units','centimeters','position',[0 0 14.7 figure_high])
     if (comma==true)
         xl = get(ax,'YTickLabel');
