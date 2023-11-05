@@ -1,5 +1,14 @@
 %% Converts deciamal dots to commas
-function decimalComma(ax)
+function decimalComma(ax, varargin)
+    
+    try 
+        expFactors = cell2mat(varargin{1, 1}{1, 1});
+        xExpFactor = expFactors(1);
+        yExpFactor = expFactors(2);
+    catch
+        xExpFactor = 0.98;
+        yExpFactor = 0.97;
+    end
 
     % save exponent
     xExponent = ax.XAxis.Exponent;
@@ -23,7 +32,7 @@ function decimalComma(ax)
     ax.YAxis.TickLabels = yLabels;
     
     if xExponent ~= 0
-        annotation('textbox', [(ax.OuterPosition(1)+ax.OuterPosition(3))*0.98, ax.InnerPosition(2)*1.05, 0.1, 0.1], ...
+        annotation('textbox', [(ax.OuterPosition(1)+ax.OuterPosition(3))*xExpFactor, ax.InnerPosition(2)*1.05, 0.1, 0.1], ...
             'String', ['\cdot10^{', num2str(yExponent), '}'], 'EdgeColor', 'none', ...
             'FontName', 'CMU Serif', 'FontSize', 9);
     end
@@ -33,7 +42,7 @@ function decimalComma(ax)
     %         'FontName', 'CMU Serif', 'FontSize', 9);
     % end
     if yExponent ~= 0
-        annotation('textbox', [ax.InnerPosition(1)*0.95, (ax.OuterPosition(2)+ax.OuterPosition(4))*0.97, 0.1, 0.1], ...
+        annotation('textbox', [ax.InnerPosition(1)*0.95, (ax.OuterPosition(2)+ax.OuterPosition(4))*yExpFactor, 0.1, 0.1], ...
             'String', ['\cdot10^{', num2str(yExponent), '}'], 'EdgeColor', 'none', ...
             'FontName', 'CMU Serif', 'FontSize', 9);
     end

@@ -1,6 +1,6 @@
 %% Exports a tiledlayout plot
-function exportTile(tile, axArray, lgdArray, figure_high, figuresPath, fileName)
-    prepare_tile_for_export(tile, axArray, lgdArray, figure_high, true);
+function exportTileBar(tile, axArray, lgdArray, figure_high, figuresPath, fileName, varargin)
+    prepare_tile_for_export(tile, axArray, lgdArray, figure_high, true, varargin);
     for ax = axArray
         ax.XGrid = 'off';
         ax.YGrid = 'on';

@@ -1,5 +1,5 @@
 %% Prepares a tiledlayout plot for export
-function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comma)
+function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comma, varargin)
 % Exports figures for an IMT thesis
     figure1 = gcf;
     tile.TileSpacing = 'compact';
@@ -19,7 +19,7 @@ function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comm
     set(figure1,'units','centimeters','position',[0 0 14.7 figure_high]);
     if (comma==true)
         for ax = axArray
-            decimalComma(ax);
+            decimalComma(ax, varargin);
             % xl = get(ax,'YTickLabel');
             % new_xl = strrep(xl(:),'.',',');
             % set(ax,'YTickLabel',new_xl);
