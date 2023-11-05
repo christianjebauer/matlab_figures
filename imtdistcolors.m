@@ -34,7 +34,9 @@ vCDBaseColors = [...
    159, 153, 154 ; ... light grey
     62,  68,  76 ; ... US dark grey
    % 255, 213,   0 ; ... yellow, not allowed at IMT
-   118, 130, 118 ; ... IMT dark green
+   % 118, 130, 118 ; ... IMT dark green
+   % 125, 155, 101 ; ... light green
+   59,  140, 122 ; ... dark green
    231,  81,  18 ; ... red
    % 61, 71, 80; ... IMT dark grey, to close to US dark grey
 ]./255;
