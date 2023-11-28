@@ -2,7 +2,12 @@
 function [] = prepare_for_export(figure_high,comma)
 ax = gca;
 figure1 = gcf;
-grid on;
+ax.XGrid = 'on';
+ax.YGrid = 'on';
+ax.XMinorGrid = 'on';
+ax.YMinorGrid = 'on';
+ax.Box = 'on';
+ax.BoxStyle = 'full';
 ax.LabelFontSizeMultiplier = 1;
 ax.TitleFontSizeMultiplier = 1;
 ax.FontSizeMode = 'manual';

@@ -5,7 +5,12 @@ function [] = prepare_tile_for_export_half(tile, axArray, lgdArray, figure_high,
     tile.TileSpacing = 'compact';
     % tile.Padding = 'tight';
     for ax = axArray
-        grid(ax,'on')
+        ax.XGrid = 'on';
+        ax.YGrid = 'on';
+        ax.XMinorGrid = 'on';
+        ax.YMinorGrid = 'on';
+        ax.Box = 'on';
+        ax.BoxStyle = 'full';
         ax.LabelFontSizeMultiplier = 1;
         ax.TitleFontSizeMultiplier = 1;
         ax.FontSizeMode = 'manual';

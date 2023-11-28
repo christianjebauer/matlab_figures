@@ -3,7 +3,7 @@ function exportTileBar(tile, axArray, lgdArray, figure_high, figuresPath, fileNa
     prepare_tile_for_export(tile, axArray, lgdArray, figure_high, true, varargin);
     for ax = axArray
         ax.XGrid = 'off';
-        ax.YGrid = 'on';
+        ax.XMinorGrid = 'off';
     end
     if ~contains(fileName, '.pdf')
         fileName = strcat(fileName, '.pdf');

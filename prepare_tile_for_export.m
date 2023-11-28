@@ -3,9 +3,16 @@ function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comm
 % Exports figures for an IMT thesis
     figure1 = gcf;
     tile.TileSpacing = 'compact';
-    % tile.Padding = 'tight';
+    % tile.Padding = 'tight'; % To: Find a way to make this compatible with
+    % exponents, with "tile.Padding = 'tight';" the font size is correctly
+    % exported
     for ax = axArray
-        grid(ax,'on')
+        ax.XGrid = 'on';
+        ax.YGrid = 'on';
+        ax.XMinorGrid = 'on';
+        ax.YMinorGrid = 'on';
+        ax.Box = 'on';
+        ax.BoxStyle = 'full';
         ax.LabelFontSizeMultiplier = 1;
         ax.TitleFontSizeMultiplier = 1;
         ax.FontSizeMode = 'manual';
@@ -16,7 +23,7 @@ function [] = prepare_tile_for_export(tile, axArray, lgdArray, figure_high, comm
         lgd.FontSize = 9;
         lgd.FontName = 'CMU Serif'; % Use listfonts to see all available fonts
     end
-    set(figure1,'units','centimeters','position',[0 0 14.7 figure_high]);
+    set(figure1,'units','centimeters','position',[0 0 14.7 figure_high]); % Adapt too textwidth
     if (comma==true)
         for ax = axArray
             decimalComma(ax, varargin);
