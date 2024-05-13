@@ -6,13 +6,14 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
         settingsIEEE.expFactor = cell2mat(varargin{1, 1}{1, 1});
     catch
         settingsIEEE.expFactor = [  1, 1;
-                                    0.9, 1;
+                                    0.9, 1.02;
                                     1, 1];
     end
     settingsIEEE.font = 'Times New Roman';
     settingsIEEE.fontSize = 8;
     settingsIEEE.MarkerSize = 3;
     tile.TileSpacing = 'compact';
+    tile.Padding = 'tight';
     set(gcf, 'units', 'centimeters', 'position', [0 0 8.63477 figure_high]);
 
     % Some settings for every axis
@@ -39,7 +40,7 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
 
     % Adapt the legend accordingly
     for lgd = lgdArray
-        lgd.FontSize = settingsIEEE.fontSize;
+        lgd.FontSize = 6.5;
         lgd.FontName = settingsIEEE.font;
     end
 
@@ -60,7 +61,7 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
     end
 
     % Prevents undesired cropping of the figure by exportgraphics
-    annotation('rectangle',[0 0 1 1],'Color','w');
+    % annotation('rectangle',[0 0 1 1],'Color','w');
     
     for pathIndex = 1 : length(figurePathArray)
         path = figurePathArray(pathIndex);
