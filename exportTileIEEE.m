@@ -1,5 +1,5 @@
 %% Exports figure with fullfills the format requirements of an IEEE paper
-function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePathArray, fileName, varargin)
+function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePathArray, fileName, cropping, varargin)
 
     % Some general settings
     try 
@@ -61,7 +61,9 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
     end
 
     % Prevents undesired cropping of the figure by exportgraphics
-    % annotation('rectangle',[0 0 1 1],'Color','w');
+    if cropping == false
+        annotation('rectangle',[0 0 1 1],'Color','w');
+    end
     
     for pathIndex = 1 : length(figurePathArray)
         path = figurePathArray(pathIndex);
