@@ -2,7 +2,7 @@ function exponentFnc(figure, ax, settings, exponentValue)
 %exponentFnc Replaces the exponents in a figure by annotations
 %   The "x" in the exponents is replaced by a dot
 
-    delete(findall(figure,'type','annotation'));
+    % delete(findall(figure,'type','annotation'));
 
     ax.XAxis.SecondaryLabel.Visible = 'off'; 
     ax.YAxis.SecondaryLabel.Visible = 'off'; 
