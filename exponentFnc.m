@@ -15,10 +15,14 @@ function exponentFnc(figure, ax, settings, exponentValue)
 
     for index = 1:length(exponentValue)
         if exponentValue(index) ~= 0
-            annotation('textbox', [exponentStartPositions(index, 1) * settings.expFactor(index,1), ...
+            an = annotation('textbox', [exponentStartPositions(index, 1) * settings.expFactor(index,1), ...
                     exponentStartPositions(index, 2) * settings.expFactor(index,2), 0.1, 0.1], ...
                 'String', ['\cdot10^{', num2str(exponentValue(index)), '}'], 'EdgeColor', 'none', ...
                 'FontName', settings.font, 'FontSize', settings.fontSize);
+            if ax.TickLabelInterpreter == "latex"
+                an.Interpreter = 'latex';
+                an.String = strcat("$$", an.String, "$$");
+            end
         end
     end
 end

@@ -8,6 +8,11 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
         settingsIEEE.expFactor = [  1, 1;
                                     0.9, 1.02;
                                     1, 1];
+        if LaTeX
+            settingsIEEE.expFactor = [  1, 1;
+                                    0.9, 0.99;
+                                    1, 1];
+        end
     end
     settingsIEEE.font = 'Times New Roman';
     settingsIEEE.fontSize = 8;
