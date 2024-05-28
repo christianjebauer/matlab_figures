@@ -1,5 +1,5 @@
 %% Exports figure with fullfills the format requirements of an IEEE paper
-function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePathArray, fileName, cropping, varargin)
+function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePathArray, fileName, cropping, LaTeX, varargin)
 
     % Some general settings
     try 
@@ -31,6 +31,15 @@ function exportTileIEEE(figure, tile, axArray, lgdArray, figure_high, figurePath
         ax.FontSizeMode = 'manual';
         ax.FontSize = settingsIEEE.fontSize;
         ax.FontName = settingsIEEE.font;
+        if LaTeX
+            ax.XLabel.Interpreter = 'latex';
+            ax.YLabel.Interpreter = 'latex';
+            ax.ZLabel.Interpreter = 'latex';
+            ax.TickLabelInterpreter = 'latex';
+            try
+                ax.Legend.Interpreter = 'latex';
+            end
+        end
         try
             for indexChildren = 1 : length(ax.Children)
                 ax.Children(indexChildren,1).MarkerSize = settingsIEEE.MarkerSize;
