@@ -105,6 +105,8 @@ function exportTileTVOe(figure, tile, axArray, lgdArray, zoomBox, figure_high, f
         % Export as pdf file
         exportgraphics(gcf, strcat(path, strcat(fileName, '.pdf')), 'BackgroundColor', 'none', ...
             'ContentType', 'vector', 'Resolution', 300);
+        exportgraphics(gcf, strcat(path, strcat(fileName, '.png')), 'BackgroundColor', 'white', ...
+            'Resolution', 900);
     end
 end
 
