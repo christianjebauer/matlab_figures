@@ -6,16 +6,20 @@ function exportTileTVOe(figure, tile, axArray, lgdArray, zoomBox, figure_high, f
         settings.expFactor = cell2mat(varargin{1, 1}{1, 1});
     catch
         settings.expFactor = [  1, 1;
-                                0.9, 1.02;
+                                0.9, 1.005;
                                 1, 1];
     end
     settings.font = 'Calibri';
     settings.fontSize = 9;
     settings.MarkerSize = 8;
-    tile.TileSpacing = 'compact';
-    tile.Padding = 'tight';
+    try
+        tile.TileSpacing = 'compact';
+        tile.Padding = 'tight';
+    end
     set(gcf, 'units', 'centimeters', 'position', [0 0 14.8 figure_high]);
-    for ax = axArray
+    for i = 1:length(axArray)
+        ax = axArray(i);
+        exponentValue(:,i) = [ax.XAxis.Exponent; ax.YAxis.Exponent; ax.ZAxis.Exponent];
         decimalComma3D(ax);
     end
 
@@ -52,12 +56,14 @@ function exportTileTVOe(figure, tile, axArray, lgdArray, zoomBox, figure_high, f
 
     % Added a box with a zoomed in verion of the figure
     try
-        dim = [zoomBox.xLimit(1), zoomBox.yLimit(1), zoomBox.xLimit(2) - zoomBox.xLimit(1), zoomBox.yLimit(2) - zoomBox.yLimit(1)]; % Limits of the zoomed figure
+        dim = [zoomBox.xLimit(1), zoomBox.yLimit(1), ...
+            zoomBox.xLimit(2) - zoomBox.xLimit(1), zoomBox.yLimit(2) - zoomBox.yLimit(1)]; % Limits of the zoomed figure
         rectPosNorm = data2norm(ax, dim); % Convert the rectangle position to normalized figure coordinates
         rectangle('Position', dim); % Rectangle around the zoom region
-        annotation('line',[rectPosNorm(1) zoomBox.boxPos(1)], [rectPosNorm(2) zoomBox.boxPos(2)+zoomBox.boxPos(4)], 'LineWidth', ax.Children(1).LineWidth);
-        annotation('line',[rectPosNorm(1) + rectPosNorm(3) zoomBox.boxPos(1)+zoomBox.boxPos(3)], ...
-            [rectPosNorm(2) zoomBox.boxPos(2)+zoomBox.boxPos(4)], 'LineWidth', ax.Children(1).LineWidth);
+        annotation('line', [rectPosNorm(1), zoomBox.boxPos(1)], ...
+            [rectPosNorm(2), zoomBox.boxPos(2) + zoomBox.boxPos(4)], 'LineWidth', ax.Children(1).LineWidth);
+        annotation('line', [rectPosNorm(1) + rectPosNorm(3), zoomBox.boxPos(1) + zoomBox.boxPos(3)], ...
+            [rectPosNorm(2), zoomBox.boxPos(2) + zoomBox.boxPos(4)], 'LineWidth', ax.Children(1).LineWidth);
         ax2 = axes('Position', zoomBox.boxPos); % Create a new axes
         % Copy children from ax to ax2
         for i = 1:length(ax.Children)
@@ -67,6 +73,8 @@ function exportTileTVOe(figure, tile, axArray, lgdArray, zoomBox, figure_high, f
         xlim(zoomBox.xLimit);
         ylim(zoomBox.yLimit);
         box on;
+        set(ax2,'XTickLabel',[]);
+        set(ax2,'YTickLabel',[]);
     end
 
     % Safe figure with original exponent
@@ -77,15 +85,17 @@ function exportTileTVOe(figure, tile, axArray, lgdArray, zoomBox, figure_high, f
     end
 
     % Replaces the exponents in a figure by annotations
-    for ax = axArray
-        exponentValue = [ax.XAxis.Exponent; ax.YAxis.Exponent; ax.ZAxis.Exponent];
-        exponentFnc(figure, ax, settings, exponentValue)
+    for i = 1:length(axArray)
+        ax = axArray(i);
+        exponentFnc(figure, ax, settings, exponentValue(:,i));
     end
 
     % Prevents undesired cropping of the figure by exportgraphics
     if cropping == false
         annotation('rectangle',[0 0 1 1],'Color','w');
     end
+
+    movegui(figure,'center');
     
     for pathIndex = 1 : length(figurePathArray)
         path = figurePathArray(pathIndex);
